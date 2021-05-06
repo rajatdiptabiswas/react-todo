@@ -1,4 +1,5 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
+import './AddTaskForm.css'
 
 class AddTaskForm extends Component {
   constructor(props) {
@@ -9,7 +10,9 @@ class AddTaskForm extends Component {
   addTask(event) {
     event.preventDefault();
     let newTask = event.target.task.value;
-    // alert(`The task "${newTask}" was added!`);
+    if (!newTask) {
+      return;
+    }
     event.target.task.value = "";
     this.props.addTaskItem(newTask);
   };

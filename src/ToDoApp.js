@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import AddTaskForm from './AddTaskForm';
 import TaskList from './TaskList';
+import Task from './Task'
 import './ToDoApp.css';
 
 class ToDoApp extends Component {
@@ -14,18 +15,19 @@ class ToDoApp extends Component {
 
   addTaskItem(newTask) {
     this.setState({
-      tasksLeft: [...this.state.tasksLeft, newTask],
+      tasksLeft: [...this.state.tasksLeft, <Task taskName={newTask} />]
     });
   }
 
   render() {
     return (
       <div className="ToDoApp">
-        <h1>To-Do</h1>
+        <h1 className="title">To-Do</h1>
         <p>{`You have ${this.state.tasksLeft.length} tasks remaining`}</p>
+        <br />
         <TaskList tasks={this.state.tasksLeft} />
         <br />
-        <AddTaskForm addTaskItem={this.addTaskItem} />
+        <AddTaskForm addTaskItem={this.addTaskItem} className="addTask" />
       </div>
     );
   }

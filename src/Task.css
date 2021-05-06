@@ -1,0 +1,33 @@
+.container {
+  display: flex;
+  flex-direction: row;
+  width: 18em;
+  justify-content: space-between;
+  margin: 1em;
+  padding: 1em;
+  border: 1px solid white;
+}
+
+.taskName {
+  overflow: scroll;
+}
+
+.taskName p {
+  margin: 0;
+  padding: 0;
+}
+
+.buttons {
+  font-size: 120%;
+  display: flex;
+  flex-direction: row;
+  margin-left: 1em;
+}
+
+.buttons .space {
+  width: 0.5em;
+}
+
+.container:hover {
+  background-color: #222;
+}

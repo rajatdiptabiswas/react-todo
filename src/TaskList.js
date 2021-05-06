@@ -1,13 +1,7 @@
-import React from "react";
-import { nanoid } from "nanoid";
+import React from 'react';
 
 function TaskList(props) {
-  const tasks = props.tasks;
-  const taskItemsList = tasks.map((task) => 
-    <div key={nanoid()}>
-      {task}
-    </div>
-  );
+  const taskItemsList = props.tasks;
 
   return (
     <div>
