@@ -1,24 +1,37 @@
-import React from 'react';
-import './Task.css';
-import { nanoid } from 'nanoid';
+import React, { Component } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheck, faBan } from '@fortawesome/free-solid-svg-icons';
+import './Task.css';
 
-function Task(props) {
-  const taskName = props.taskName;
+class Task extends Component {
+  constructor(props) {
+    super(props);
+    this.taskName = this.props.taskName;
+    this.id = this.props.taskID;
+    this.deleteTask = this.props.handleDelete.bind(this, this.id);
+  }
 
-  return (
-    <div key={nanoid()} className="container">
-      <div className="taskName">
-        <p>{taskName}</p>
+  render() {
+    return (
+      <div className="container">
+        <div className="taskName">
+          <p>{this.taskName}</p>
+        </div>
+        <div className="buttons">
+          <FontAwesomeIcon
+            icon={faCheck}
+            className="done"
+          />
+          <span className="space"></span>
+          <FontAwesomeIcon
+            icon={faBan}
+            className="delete"
+            onClick={this.deleteTask}
+          />
+        </div>
       </div>
-      <div className="buttons">
-        <FontAwesomeIcon icon={faCheck} className="done" />
-        <span className="space"></span>
-        <FontAwesomeIcon icon={faBan} className="delete" />
-      </div>
-    </div>
-  );
+    );
+  }
 }
 
 export default Task;
