@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { nanoid } from 'nanoid';
 import AddTaskForm from './AddTaskForm';
 import TaskList from './TaskList';
 import Task from './Task'
@@ -9,6 +8,7 @@ class ToDoApp extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      taskIDCounter: 0,
       tasksLeft: [],
     };
     this.addTaskItem = this.addTaskItem.bind(this);
@@ -16,23 +16,23 @@ class ToDoApp extends Component {
   }
 
   addTaskItem(newTask) {
-    let id = nanoid();
-    this.setState({
+    this.setState(prevState => ({
+      taskIDCounter: prevState.taskIDCounter + 1,
       tasksLeft: [
-        ...this.state.tasksLeft,
+        ...prevState.tasksLeft,
         <Task
-          key={id}
+          key={prevState.taskIDCounter}
           taskName={newTask}
-          taskID={id}
+          taskID={prevState.taskIDCounter}
           handleDelete={this.deleteTaskItem}
         />
       ]
-    });
+    }));
   }
 
   deleteTaskItem(id) {
     this.setState(prevState => ({
-      tasksLeft: prevState.tasksLeft.filter(task => task.props.taskID !== id)
+      tasksLeft: prevState.tasksLeft.filter(task => task.props.taskID !== id),
     }));
   }
 

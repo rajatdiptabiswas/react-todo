@@ -8,7 +8,11 @@ class Task extends Component {
     super(props);
     this.taskName = this.props.taskName;
     this.id = this.props.taskID;
-    this.deleteTask = this.props.handleDelete.bind(this, this.id);
+    this.deleteTask = this.deleteTask.bind(this);
+  }
+
+  deleteTask() {
+    this.props.handleDelete(this.id);
   }
 
   render() {
