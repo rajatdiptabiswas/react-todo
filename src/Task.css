@@ -8,6 +8,10 @@
   border: 1px solid white;
 }
 
+.taskName::-webkit-scrollbar { 
+  display: none;  /* Safari and Chrome */
+}
+
 .taskName {
   overflow: scroll;
 }
