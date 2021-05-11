@@ -21,6 +21,10 @@
   padding: 0;
 }
 
+.taskCompleted {
+  text-decoration: line-through;
+}
+
 .buttons {
   font-size: 120%;
   display: flex;
