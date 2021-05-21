@@ -6,39 +6,34 @@ import './Task.css';
 class Task extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      isCompleted: false,
-    }
     this.taskName = this.props.taskName;
     this.id = this.props.taskID;
+    this.isCompleted = this.props.isCompleted;
     this.deleteTask = this.deleteTask.bind(this);
     this.completeTask = this.completeTask.bind(this);
   }
 
   completeTask() {
-    if (this.state.isCompleted) {
+    if (this.isCompleted) {
       return;
     }
     this.props.handleComplete(this.id);
-    this.setState({
-      isCompleted: true,
-    });
   }
 
   deleteTask() {
-    this.props.handleDelete(this.id, this.state.isCompleted);
+    this.props.handleDelete(this.id, this.isCompleted);
   }
 
   render() {
     return (
       <div className="container">
-        <div className={"taskName " + (this.state.isCompleted ? "taskCompleted" : "")}>
+        <div className={"taskName " + (this.isCompleted && "taskCompleted")}>
           <p>{this.taskName}</p>
         </div>
         <div className="buttons">
           <FontAwesomeIcon
             icon={faCheck}
-            className="done"
+            className={"done " + (this.isCompleted && "disabledButton")}
             onClick={this.completeTask}
           />
           <span className="space"></span>

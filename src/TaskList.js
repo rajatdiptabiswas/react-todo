@@ -6,6 +6,7 @@ function TaskList(props) {
   return (
     <div>
       {taskItemsList}
+      {taskItemsList.length > 0 && <br />}
     </div>
   );
 }
