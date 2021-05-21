@@ -8,23 +8,33 @@ class Task extends Component {
     super(props);
     this.taskName = this.props.taskName;
     this.id = this.props.taskID;
+    this.isCompleted = this.props.isCompleted;
     this.deleteTask = this.deleteTask.bind(this);
+    this.completeTask = this.completeTask.bind(this);
+  }
+
+  completeTask() {
+    if (this.isCompleted) {
+      return;
+    }
+    this.props.handleComplete(this.id);
   }
 
   deleteTask() {
-    this.props.handleDelete(this.id);
+    this.props.handleDelete(this.id, this.isCompleted);
   }
 
   render() {
     return (
       <div className="container">
-        <div className="taskName">
+        <div className={"taskName " + (this.isCompleted && "taskCompleted")}>
           <p>{this.taskName}</p>
         </div>
         <div className="buttons">
           <FontAwesomeIcon
             icon={faCheck}
-            className="done"
+            className={"done " + (this.isCompleted && "disabledButton")}
+            onClick={this.completeTask}
           />
           <span className="space"></span>
           <FontAwesomeIcon

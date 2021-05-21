@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Jost:wght@500;600;700&display=swap');
+
 form {
   display: flex;
   flex-direction: row;
@@ -11,8 +13,9 @@ input[type=text] {
   width: 80%;
   color: white;
   background-color: black;
-  font-family: 'Futura', serif;
-  font-size: medium;
+  font-family: 'Jost', sans-serif;
+  font-weight: 600;
+  font-size: 1em;
 }
 
 button {
@@ -21,7 +24,7 @@ button {
   border: 1px solid white;
   color: white;
   background-color: #222;
-  font-size: large;
+  font-size: 1em;
 }
 
 button:hover {
