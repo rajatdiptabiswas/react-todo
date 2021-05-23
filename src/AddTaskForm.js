@@ -2,11 +2,8 @@ import React, { Component } from 'react';
 import './AddTaskForm.css'
 
 class AddTaskForm extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      value: '',
-    }
+  state = {
+    value: '',
   }
 
   handleChange = (event) => {

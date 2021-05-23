@@ -4,14 +4,11 @@ import TaskList from './TaskList';
 import './ToDoApp.css';
 
 class ToDoApp extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      taskIDCounter: 0,
-      tasksLeft: [],
-      tasksCompleted: [],
-    };
-  }
+  state = {
+    taskIDCounter: 0,
+    tasksLeft: [],
+    tasksCompleted: [],
+  };
 
   addTaskItem = (newTask) => {
     this.setState(prevState => ({

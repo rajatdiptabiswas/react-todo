@@ -4,12 +4,9 @@ import { faCheck, faBan } from '@fortawesome/free-solid-svg-icons';
 import './Task.css';
 
 class Task extends Component {
-  constructor(props) {
-    super(props);
-    this.taskName = this.props.taskName;
-    this.id = this.props.taskID;
-    this.isCompleted = this.props.isCompleted;
-  }
+  taskName = this.props.taskName;
+  id = this.props.taskID;
+  isCompleted = this.props.isCompleted;
 
   completeTask = () => {
     if (this.isCompleted) {
