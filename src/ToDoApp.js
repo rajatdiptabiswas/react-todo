@@ -11,12 +11,9 @@ class ToDoApp extends Component {
       tasksLeft: [],
       tasksCompleted: [],
     };
-    this.addTaskItem = this.addTaskItem.bind(this);
-    this.completeTaskItem = this.completeTaskItem.bind(this);
-    this.deleteTaskItem = this.deleteTaskItem.bind(this);
   }
 
-  addTaskItem(newTask) {
+  addTaskItem = (newTask) => {
     this.setState(prevState => ({
       taskIDCounter: prevState.taskIDCounter + 1,
       tasksLeft: [
@@ -30,7 +27,7 @@ class ToDoApp extends Component {
     }));
   }
 
-  completeTaskItem(id) {
+  completeTaskItem = (id) => {
     const completedTask = this.state.tasksLeft.find(task => task.taskID === id);
     completedTask.isCompleted = true;
     this.setState(prevState => ({
@@ -42,7 +39,7 @@ class ToDoApp extends Component {
     }));
   }
 
-  deleteTaskItem(id, isCompleted) {
+  deleteTaskItem = (id, isCompleted) => {
     if (isCompleted) {
       this.setState(prevState => ({
         tasksCompleted: prevState.tasksCompleted.filter(task => task.taskID !== id),

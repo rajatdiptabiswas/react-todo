@@ -9,18 +9,16 @@ class Task extends Component {
     this.taskName = this.props.taskName;
     this.id = this.props.taskID;
     this.isCompleted = this.props.isCompleted;
-    this.deleteTask = this.deleteTask.bind(this);
-    this.completeTask = this.completeTask.bind(this);
   }
 
-  completeTask() {
+  completeTask = () => {
     if (this.isCompleted) {
       return;
     }
     this.props.handleComplete(this.id);
   }
 
-  deleteTask() {
+  deleteTask = () => {
     this.props.handleDelete(this.id, this.isCompleted);
   }
 
