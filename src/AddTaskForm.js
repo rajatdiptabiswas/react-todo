@@ -7,17 +7,15 @@ class AddTaskForm extends Component {
     this.state = {
       value: '',
     }
-    this.handleChange = this.handleChange.bind(this);
-    this.addTask = this.addTask.bind(this);
   }
 
-  handleChange(event) {
+  handleChange = (event) => {
     this.setState({
       value: event.target.value,
     });
   }
 
-  addTask(event) {
+  addTask = (event) => {
     event.preventDefault();
     let newTask = this.state.value;
     if (!newTask) {
