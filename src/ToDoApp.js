@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import AddTaskForm from './AddTaskForm';
 import TaskList from './TaskList';
-import Task from './Task'
 import './ToDoApp.css';
 
 class ToDoApp extends Component {
@@ -22,32 +21,23 @@ class ToDoApp extends Component {
       taskIDCounter: prevState.taskIDCounter + 1,
       tasksLeft: [
         ...prevState.tasksLeft,
-        <Task
-          key={prevState.taskIDCounter}
-          taskName={newTask}
-          taskID={prevState.taskIDCounter}
-          isCompleted={false}
-          handleComplete={this.completeTaskItem}
-          handleDelete={this.deleteTaskItem}
-        />
-      ]
+        {
+          taskID: prevState.taskIDCounter,
+          taskName: newTask,
+          isCompleted: false,
+        },
+      ],
     }));
   }
 
   completeTaskItem(id) {
-    const completedTask = this.state.tasksLeft.find(task => task.props.taskID === id);
+    const completedTask = this.state.tasksLeft.find(task => task.taskID === id);
+    completedTask.isCompleted = true;
     this.setState(prevState => ({
-      tasksLeft: prevState.tasksLeft.filter(task => task.props.taskID !== id),
+      tasksLeft: prevState.tasksLeft.filter(task => task.taskID !== id),
       tasksCompleted: [
         ...prevState.tasksCompleted,
-        <Task
-          key={completedTask.props.taskID}
-          taskName={completedTask.props.taskName}
-          taskID={completedTask.props.taskID}
-          isCompleted={!completedTask.props.isCompleted}
-          handleComplete={this.completeTaskItem}
-          handleDelete={this.deleteTaskItem}
-        />
+        completedTask,
       ],
     }));
   }
@@ -55,11 +45,11 @@ class ToDoApp extends Component {
   deleteTaskItem(id, isCompleted) {
     if (isCompleted) {
       this.setState(prevState => ({
-        tasksCompleted: prevState.tasksCompleted.filter(task => task.props.taskID !== id),
+        tasksCompleted: prevState.tasksCompleted.filter(task => task.taskID !== id),
       }));
     } else {
       this.setState(prevState => ({
-        tasksLeft: prevState.tasksLeft.filter(task => task.props.taskID !== id),
+        tasksLeft: prevState.tasksLeft.filter(task => task.taskID !== id),
       }));
     }
   }
@@ -70,9 +60,17 @@ class ToDoApp extends Component {
         <h1 className="title">To-Do</h1>
         <p>{`You have ${this.state.tasksLeft.length} tasks remaining`}</p>
         <br />
-        <TaskList tasks={this.state.tasksLeft} />
+        <TaskList
+          tasks={this.state.tasksLeft}
+          handleComplete={this.completeTaskItem}
+          handleDelete={this.deleteTaskItem}
+        />
         {this.state.tasksCompleted.length > 0 && <p>Finished tasks</p>}
-        <TaskList tasks={this.state.tasksCompleted} />
+        <TaskList
+          tasks={this.state.tasksCompleted}
+          handleComplete={this.completeTaskItem}
+          handleDelete={this.deleteTaskItem}
+        />
         <AddTaskForm addTaskItem={this.addTaskItem} className="addTask" />
       </div>
     );
