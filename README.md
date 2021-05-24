@@ -1,3 +1,11 @@
+# To-Do
+
+A to-do list app made while learning React.
+
+<img width="1333" alt="To-Do Demo" src="https://user-images.githubusercontent.com/32998741/119352421-7d31ea80-bcc3-11eb-8576-285cba2b5f79.png">
+
+*A demo of the app can be accessed by clicking [here](https://rajatdiptabiswas.github.io/react-todo/).*
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
@@ -68,3 +76,4 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `yarn build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
