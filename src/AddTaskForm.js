@@ -1,44 +1,36 @@
-import React, { Component } from 'react';
-import './AddTaskForm.css'
+import React, { useState } from 'react';
+import './AddTaskForm.css';
 
-class AddTaskForm extends Component {
-  state = {
-    value: '',
-  }
+function AddTaskForm({ addTaskItem }) {
+  const [value, setValue] = useState('');
 
-  handleChange = (event) => {
-    this.setState({
-      value: event.target.value,
-    });
-  }
+  const handleChange = (event) => {
+    setValue(event.target.value);
+  };
 
-  addTask = (event) => {
+  const addTask = (event) => {
     event.preventDefault();
-    let newTask = this.state.value;
+    const newTask = value;
     if (!newTask) {
       return;
     }
-    this.props.addTaskItem(newTask);
-    this.setState({
-      value: '',
-    })
+    addTaskItem(newTask);
+    setValue('');
   };
 
-  render() {
-    return (
-      <div>
-        <form onSubmit={this.addTask}>
-          <input
-            type="text"
-            placeholder="Add a task..."
-            value={this.state.value}
-            onChange={this.handleChange}
-          />
-          <button type="submit">+</button>
-        </form>
-      </div>
-    );
-  }
+  return (
+    <div>
+      <form onSubmit={addTask}>
+        <input
+          type="text"
+          placeholder="Add a task..."
+          value={value}
+          onChange={handleChange}
+        />
+        <button type="submit">+</button>
+      </form>
+    </div>
+  );
 }
 
 export default AddTaskForm;

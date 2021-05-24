@@ -1,17 +1,17 @@
 import React from 'react';
 import Task from './Task';
 
-function TaskList(props) {
-  const taskItemsList = props.tasks.map(task =>
+function TaskList({ tasks, handleComplete, handleDelete }) {
+  const taskItemsList = tasks.map((task) => (
     <Task
       key={task.taskID}
       taskID={task.taskID}
       taskName={task.taskName}
       isCompleted={task.isCompleted}
-      handleComplete={props.handleComplete}
-      handleDelete={props.handleDelete}
+      handleComplete={handleComplete}
+      handleDelete={handleDelete}
     />
-  );
+  ));
 
   return (
     <div>

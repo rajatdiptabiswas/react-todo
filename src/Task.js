@@ -1,46 +1,36 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheck, faBan } from '@fortawesome/free-solid-svg-icons';
 import './Task.css';
 
-class Task extends Component {
-  taskName = this.props.taskName;
-  id = this.props.taskID;
-  isCompleted = this.props.isCompleted;
-
-  completeTask = () => {
-    if (this.isCompleted) {
+function Task({ taskID, taskName, isCompleted, handleComplete, handleDelete }) {
+  const completeTask = () => {
+    if (isCompleted) {
       return;
     }
-    this.props.handleComplete(this.id);
-  }
+    handleComplete(taskID);
+  };
 
-  deleteTask = () => {
-    this.props.handleDelete(this.id, this.isCompleted);
-  }
+  const deleteTask = () => {
+    handleDelete(taskID, isCompleted);
+  };
 
-  render() {
-    return (
-      <div className="container">
-        <div className={"taskName " + (this.isCompleted && "taskCompleted")}>
-          <p>{this.taskName}</p>
-        </div>
-        <div className="buttons">
-          <FontAwesomeIcon
-            icon={faCheck}
-            className={"done " + (this.isCompleted && "disabledButton")}
-            onClick={this.completeTask}
-          />
-          <span className="space"></span>
-          <FontAwesomeIcon
-            icon={faBan}
-            className="delete"
-            onClick={this.deleteTask}
-          />
-        </div>
+  return (
+    <div className="container">
+      <div className={'taskName ' + (isCompleted && 'taskCompleted')}>
+        <p>{taskName}</p>
       </div>
-    );
-  }
+      <div className="buttons">
+        <FontAwesomeIcon
+          icon={faCheck}
+          className={'done ' + (isCompleted && 'disabledButton')}
+          onClick={completeTask}
+        />
+        <span className="space"></span>
+        <FontAwesomeIcon icon={faBan} className="delete" onClick={deleteTask} />
+      </div>
+    </div>
+  );
 }
 
 export default Task;
